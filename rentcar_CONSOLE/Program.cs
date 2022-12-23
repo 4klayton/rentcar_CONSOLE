@@ -2,8 +2,10 @@
 
 
 
-Console.WriteLine("Boas Vindas ao Rentcar");
+using rentcar_CONSOLE.rentcar.Models.Objects;
 
+Console.WriteLine("Boas Vindas ao Rentcar...");
+Console.ReadKey();
 
 #region estudos de array
 ////TestaArrayInt();
@@ -94,7 +96,11 @@ Console.WriteLine("Boas Vindas ao Rentcar");
 
 #endregion
 
+
+
+List<Car> _listCar = new List<Car>();
 MainMenu();
+
 void MainMenu()
 {
 	char option = '0';
@@ -110,14 +116,29 @@ void MainMenu()
 		Console.WriteLine("================================");
 		Console.WriteLine("\n\n");
 		Console.Write("Digite a opção desejada: ");
-		option = Console.ReadLine()[0];
+		try
+		{
+			option = Console.ReadLine()[0];
+		}
+		catch (IndexOutOfRangeException e)
+		{
+			Console.WriteLine("Digite algum número");
+			Console.ReadKey();
+			break;
+		}
+		
 		switch (option)
 		{
 			case '1':
 				CarMenu();
 				break;
+			case '4':
+				Console.WriteLine("Tchau!");
+				Console.ReadKey();
+				break;
 			default:
-				Console.WriteLine("Opcao não implementada.");
+				Console.WriteLine("Opção não implementada.");
+				Console.ReadKey();
 				break;
 		}
 	}
@@ -140,15 +161,85 @@ void CarMenu()
 		Console.WriteLine("================================");
 		Console.WriteLine("\n\n");
 		Console.Write("Digite a opção desejada: ");
-		option = Console.ReadLine()[0];
+		try
+		{
+			option = Console.ReadLine()[0];
+		}
+		catch (IndexOutOfRangeException e)
+		{
+			Console.WriteLine("Digite algum número");
+			Console.ReadKey();
+			break;
+		}
+		
 		switch (option)
 		{
-			//case '1':
-			//AddCar();
-			//break;
+			case '1':
+				AddCar();
+				break;
+			case '2':
+				ListCar();
+				break;
+			case '3':
+				RemoveCar(_listCar);
+				break;
+			case '6':
+				Console.WriteLine("Voltando para menu principal...");
+				Console.ReadKey();
+				break;
 			default:
-				Console.WriteLine("Opcao não implementada.");
+				Console.WriteLine("Opção não implementada.");
+				Console.ReadKey();
 				break;
 		}
 	}
 }
+
+void AddCar()
+{
+	Console.Clear();
+	Console.WriteLine("================================");
+	Console.WriteLine("===     Cadastrando Carro    ===");
+	Console.WriteLine("================================");
+	Console.WriteLine("\n");
+	Console.Write("Digite a marca do carro: ");
+	string _brand = Console.ReadLine();
+	Console.Write("Digite o modelo do carro: ");
+	string _model = Console.ReadLine();
+
+	Car newCar = new Car(_brand, _model);
+	_listCar.Add(newCar);
+	//Car newCar = new Car("Renault", "Clio")
+	//_listCar.Add(new Car { });
+}
+
+void ListCar()
+{
+	if (_listCar.Count <= 0)
+	{
+		Console.WriteLine("Nenhum carro cadastrado.");
+		Console.ReadKey();
+		return;
+	}
+
+	Console.Clear();
+	Console.WriteLine("================================");
+	Console.WriteLine("===      Lista de Carros     ===");
+	Console.WriteLine("================================");
+	Console.WriteLine("\n");
+
+	int i = 0;
+	foreach (Car item in _listCar)
+	{
+		Console.WriteLine($"        Índice: {i}     ");
+		Console.WriteLine($"Marca do Carro: {item.brand}");
+		Console.WriteLine($"Modelo do Carro: {item.model}");
+		Console.WriteLine($"=========================");
+		i++;
+	}
+	Console.ReadKey();
+
+	//Car newCar = new Car("Renault", "Clio")
+	//_listCar.Add(new Car { });
+}
+

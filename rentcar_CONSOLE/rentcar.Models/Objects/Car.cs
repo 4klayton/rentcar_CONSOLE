@@ -8,126 +8,160 @@ namespace rentcar_CONSOLE.rentcar.Models.Objects
 {
 	public class Car
 	{
+		public String brand;
+		public String model;
+		public String color;
+		public int year;
 
-		public Client Titular { get; set; }
-		public string Nome_Agencia { get; set; }
-
-		private int _numero_agencia;
-		public int Numero_agencia
+		public Car(string brand, string model)
 		{
-			get
-			{
-				return _numero_agencia;
-			}
-			set
-			{
-				if (value <= 0)
-				{
-
-				}
-				else
-				{
-					_numero_agencia = value;
-				}
-			}
+			this.brand = brand;
+			this.model = model;
+			//totalCars += 1;
 
 		}
 
-		private string _conta;
-		public string Conta
+		public void RemoveCar(List<Car> list)
 		{
-			get
+			if (list.Count <= 0)
 			{
-				return _conta;
-			}
-			set
-			{
-				if (value == null)
-				{
-					return;
-				}
-				else
-				{
-					_conta = value;
-				}
-			}
-		}
-
-		private double saldo;
-		public double Saldo
-		{
-			get
-			{
-				return saldo;
-			}
-			set
-			{
-				if (value < 0)
-				{
-					return;
-				}
-				else
-				{
-					saldo = value;
-				}
-			}
-		}
-
-		public bool Sacar(double valor)
-		{
-			if (saldo < valor)
-			{
-				return false;
-			}
-			if (valor < 0)
-			{
-				return false;
-			}
-			else
-			{
-				saldo = saldo - valor;
-				return true;
-			}
-		}
-
-		public void Depositar(double valor)
-		{
-			if (valor < 0)
-			{
+				Console.WriteLine("Nenhum carro cadastrado.");
+				Console.ReadKey();
 				return;
 			}
-			saldo = saldo + valor;
+			Console.Clear();
+			Console.WriteLine("================================");
+			Console.WriteLine("===      Removendo Carro     ===");
+			Console.WriteLine("================================");
+			Console.WriteLine("\n");
+			Console.Write("Digite o índice do carro que deseja remover: ");
+			int _index = int.Parse(Console.ReadLine());
+			list.RemoveAt(_index);
+			Console.WriteLine("Carro ");
 		}
 
-		public bool Transferir(double valor, Car destino)
-		{
-			if (saldo < valor)
-			{
-				return false;
-			}
-			if (valor < 0)
-			{
-				return false;
-			}
-			else
-			{
-				saldo = saldo - valor;
-				destino.saldo = destino.saldo + valor;
-				return true;
-			}
-		}
 
-		public Car(int numero_agencia, string conta)
-		{
-			Numero_agencia = numero_agencia;
-			Conta = conta;
-			Titular = new Client();
-			TotalDeContasCriadas += 1;
+		#region Estudos da classe conta corrente
+		//public Client Titular { get; set; }
+		//public string Nome_Agencia { get; set; }
 
-		}
+		//private int _numero_agencia;
+		//public int Numero_agencia
+		//{
+		//	get
+		//	{
+		//		return _numero_agencia;
+		//	}
+		//	set
+		//	{
+		//		if (value <= 0)
+		//		{
 
-		public static int TotalDeContasCriadas { get; set; }
+		//		}
+		//		else
+		//		{
+		//			_numero_agencia = value;
+		//		}
+		//	}
 
+		//}
+
+		//private string _conta;
+		//public string Conta
+		//{
+		//	get
+		//	{
+		//		return _conta;
+		//	}
+		//	set
+		//	{
+		//		if (value == null)
+		//		{
+		//			return;
+		//		}
+		//		else
+		//		{
+		//			_conta = value;
+		//		}
+		//	}
+		//}
+
+		//private double saldo;
+		//public double Saldo
+		//{
+		//	get
+		//	{
+		//		return saldo;
+		//	}
+		//	set
+		//	{
+		//		if (value < 0)
+		//		{
+		//			return;
+		//		}
+		//		else
+		//		{
+		//			saldo = value;
+		//		}
+		//	}
+		//}
+
+		//public bool Sacar(double valor)
+		//{
+		//	if (saldo < valor)
+		//	{
+		//		return false;
+		//	}
+		//	if (valor < 0)
+		//	{
+		//		return false;
+		//	}
+		//	else
+		//	{
+		//		saldo = saldo - valor;
+		//		return true;
+		//	}
+		//}
+
+		//public void Depositar(double valor)
+		//{
+		//	if (valor < 0)
+		//	{
+		//		return;
+		//	}
+		//	saldo = saldo + valor;
+		//}
+
+		//public bool Transferir(double valor, Car destino)
+		//{
+		//	if (saldo < valor)
+		//	{
+		//		return false;
+		//	}
+		//	if (valor < 0)
+		//	{
+		//		return false;
+		//	}
+		//	else
+		//	{
+		//		saldo = saldo - valor;
+		//		destino.saldo = destino.saldo + valor;
+		//		return true;
+		//	}
+		//}
+
+		//public Car(int numero_agencia, string conta)
+		//{
+		//	Numero_agencia = numero_agencia;
+		//	Conta = conta;
+		//	Titular = new Client();
+		//	TotalDeContasCriadas += 1;
+
+		//}
+
+		//public static int TotalDeContasCriadas { get; set; }
+		#endregion
+		#region outros estudos
 		//public override bool Equals(object? conta)
 		//{
 		//    ContaCorrente outroConta = conta as ContaCorrente;
@@ -140,7 +174,7 @@ namespace rentcar_CONSOLE.rentcar.Models.Objects
 		//    return Numero_agencia == outroConta.Numero_agencia && 
 		//        Conta.Equals(outroConta.Conta);
 		//}
-
+		#endregion
 
 	}
 }
