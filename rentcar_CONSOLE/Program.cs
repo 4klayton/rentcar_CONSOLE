@@ -187,7 +187,7 @@ void CarMenu()
 				ListCar();
 				break;
 			case '3':
-				//RemoveCar(_listCar);
+				RemoveCar(_listCar);
 				break;
 			case '6':
 				Console.WriteLine("Voltando para menu principal...");
