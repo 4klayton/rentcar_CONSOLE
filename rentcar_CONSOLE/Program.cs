@@ -1,8 +1,6 @@
 ﻿// 4klayton - Project based on Alura C# course (byteBank)
 
-
-
-using rentcar_CONSOLE.rentcar.Models.Objects;
+using rentcar_CONSOLE.rentcar_Models.Objects;
 
 Console.WriteLine("Boas Vindas ao Rentcar...");
 Console.ReadKey();
@@ -96,13 +94,18 @@ Console.ReadKey();
 
 #endregion
 
+List<Car> _listCar = new List<Car>()
+{
+	new Car("Renault", "Clio"),
+	new Car("Renault", "Sandero"),
+	new Car("Renault", "Kwid"),
+};
 
-
-List<Car> _listCar = new List<Car>();
 MainMenu();
 
 void MainMenu()
 {
+	repeatMainMenu:
 	char option = '0';
 	while (option != '4')
 	{
@@ -120,10 +123,11 @@ void MainMenu()
 		{
 			option = Console.ReadLine()[0];
 		}
-		catch (IndexOutOfRangeException e)
+		catch (IndexOutOfRangeException)
 		{
 			Console.WriteLine("Digite algum número");
 			Console.ReadKey();
+			goto repeatMainMenu;
 			break;
 		}
 		
@@ -146,6 +150,7 @@ void MainMenu()
 
 void CarMenu()
 {
+	repeatCarMenu:
 	char option = '0';
 	while (option != '6')
 	{
@@ -165,10 +170,11 @@ void CarMenu()
 		{
 			option = Console.ReadLine()[0];
 		}
-		catch (IndexOutOfRangeException e)
+		catch (IndexOutOfRangeException)
 		{
 			Console.WriteLine("Digite algum número");
 			Console.ReadKey();
+			goto repeatCarMenu;
 			break;
 		}
 		
@@ -181,7 +187,7 @@ void CarMenu()
 				ListCar();
 				break;
 			case '3':
-				RemoveCar(_listCar);
+				//RemoveCar(_listCar);
 				break;
 			case '6':
 				Console.WriteLine("Voltando para menu principal...");

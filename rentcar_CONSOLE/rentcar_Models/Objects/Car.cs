@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace rentcar_CONSOLE.rentcar.Models.Objects
+namespace rentcar_CONSOLE.rentcar_Models.Objects
 {
 	public class Car
 	{
