@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace rentcar_CONSOLE.rentcar.Models.ADM.Employees
+{
+	public class AccountManager : AuthenticatedEmployee
+	{
+		public AccountManager(string cpf) : base(4000, cpf)
+		{
+		}
+
+		public override void AumentarSalario()
+		{
+			this.Salario *= 1.05;
+		}
+
+		public override double getBonificacao()
+		{
+			return this.Salario * 0.25;
+		}
+	}
+}
