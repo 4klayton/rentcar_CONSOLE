@@ -12,6 +12,7 @@ namespace rentcar_CONSOLE.rentcar_Models.Objects
 		public String model;
 		public String color;
 		public int year;
+		public char isRented;
 
 		public Car(string brand, string model)
 		{
@@ -34,10 +35,26 @@ namespace rentcar_CONSOLE.rentcar_Models.Objects
 			Console.WriteLine("===      Removendo Carro     ===");
 			Console.WriteLine("================================");
 			Console.WriteLine("\n");
-			Console.Write("Digite o índice do carro que deseja remover: ");
-			int _index = int.Parse(Console.ReadLine());
-			list.RemoveAt(_index);
-			Console.WriteLine("Carro ");
+
+			Console.Write("Digite o modelo do carro que deseja remover: ");
+			string modelToFind = Console.ReadLine().ToUpper();
+		
+			for (int i = 0; i < list.Count; i++ )
+			{
+				if (list[i].model == modelToFind)
+				{
+					list.RemoveAt(i);
+					Console.WriteLine($"O carro {modelToFind} foi removido da lista");
+					Console.ReadKey();
+					break;
+				}
+				if (i == (list.Count-1))
+				{
+					Console.WriteLine("Carro não encontrado.");
+					Console.ReadKey();
+				}
+			}
+
 		}
 
 		public static void AddCar(List<Car> list)
@@ -48,9 +65,9 @@ namespace rentcar_CONSOLE.rentcar_Models.Objects
 			Console.WriteLine("================================");
 			Console.WriteLine("\n");
 			Console.Write("Digite a marca do carro: ");
-			string _brand = Console.ReadLine();
+			string _brand = Console.ReadLine().ToUpper();
 			Console.Write("Digite o modelo do carro: ");
-			string _model = Console.ReadLine();
+			string _model = Console.ReadLine().ToUpper();
 
 			Car newCar = new Car(_brand, _model);
 			list.Add(newCar);

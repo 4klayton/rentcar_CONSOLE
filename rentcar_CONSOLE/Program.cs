@@ -96,9 +96,9 @@ Console.ReadKey();
 
 List<Car> _listCar = new List<Car>()
 {
-	new Car("Renault", "Clio"),
-	new Car("Renault", "Sandero"),
-	new Car("Renault", "Kwid"),
+	new Car("Renault".ToUpper(), "Clio".ToUpper()),
+	new Car("Renault".ToUpper(), "Sandero".ToUpper()),
+	new Car("Renault".ToUpper(), "Kwid".ToUpper()),
 };
 
 MainMenu();
