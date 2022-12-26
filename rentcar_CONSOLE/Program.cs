@@ -107,7 +107,7 @@ void MainMenu()
 {
 	repeatMainMenu:
 	char option = '0';
-	while (option != '4')
+	while (option != '9')
 	{
 		Console.Clear();
 		Console.WriteLine("================================");
@@ -115,7 +115,7 @@ void MainMenu()
 		Console.WriteLine("=== 1 - Carro                ===");
 		Console.WriteLine("=== 2 - Cliente              ===");
 		Console.WriteLine("=== 3 - Acessório            ===");
-		Console.WriteLine("=== 4 - Sair do Sistema      ===");
+		Console.WriteLine("=== 9 - Sair do Sistema      ===");
 		Console.WriteLine("================================");
 		Console.WriteLine("\n\n");
 		Console.Write("Digite a opção desejada: ");
@@ -136,7 +136,7 @@ void MainMenu()
 			case '1':
 				CarMenu();
 				break;
-			case '4':
+			case '9':
 				Console.WriteLine("Tchau!");
 				Console.ReadKey();
 				break;
@@ -152,7 +152,7 @@ void CarMenu()
 {
 	repeatCarMenu:
 	char option = '0';
-	while (option != '6')
+	while (option != '9')
 	{
 		Console.Clear();
 		Console.WriteLine("================================");
@@ -162,7 +162,7 @@ void CarMenu()
 		Console.WriteLine("=== 3 - Remover Carros       ===");
 		Console.WriteLine("=== 4 - Ordenar Carros       ===");
 		Console.WriteLine("=== 5 - Pesquisar Carros     ===");
-		Console.WriteLine("=== 6 - Menu Principal       ===");
+		Console.WriteLine("=== 9 - Menu Principal       ===");
 		Console.WriteLine("================================");
 		Console.WriteLine("\n\n");
 		Console.Write("Digite a opção desejada: ");
@@ -177,75 +177,38 @@ void CarMenu()
 			goto repeatCarMenu;
 			break;
 		}
-		
-		switch (option)
+		try
 		{
-			case '1':
-				AddCar();
-				break;
-			case '2':
-				ListCar();
-				break;
-			case '3':
-				RemoveCar(_listCar);
-				break;
-			case '6':
-				Console.WriteLine("Voltando para menu principal...");
-				Console.ReadKey();
-				break;
-			default:
-				Console.WriteLine("Opção não implementada.");
-				Console.ReadKey();
-				break;
+			switch (option)
+			{
+				case '1':
+					Car.AddCar(_listCar);
+					break;
+				case '2':
+					Car.ListCar(_listCar);
+					break;
+				case '3':
+					Car.RemoveCar(_listCar);
+					break;
+				case '9':
+					Console.WriteLine("Voltando para menu principal...");
+					Console.ReadKey();
+					break;
+				default:
+					Console.WriteLine("Opção não implementada.");
+					Console.ReadKey();
+					break;
+			}
+		}
+		catch (ArgumentOutOfRangeException)
+		{
+			Console.WriteLine("Esse posição não é válida");
+			Console.ReadKey();
+			goto repeatCarMenu;
 		}
 	}
 }
 
-void AddCar()
-{
-	Console.Clear();
-	Console.WriteLine("================================");
-	Console.WriteLine("===     Cadastrando Carro    ===");
-	Console.WriteLine("================================");
-	Console.WriteLine("\n");
-	Console.Write("Digite a marca do carro: ");
-	string _brand = Console.ReadLine();
-	Console.Write("Digite o modelo do carro: ");
-	string _model = Console.ReadLine();
 
-	Car newCar = new Car(_brand, _model);
-	_listCar.Add(newCar);
-	//Car newCar = new Car("Renault", "Clio")
-	//_listCar.Add(new Car { });
-}
 
-void ListCar()
-{
-	if (_listCar.Count <= 0)
-	{
-		Console.WriteLine("Nenhum carro cadastrado.");
-		Console.ReadKey();
-		return;
-	}
-
-	Console.Clear();
-	Console.WriteLine("================================");
-	Console.WriteLine("===      Lista de Carros     ===");
-	Console.WriteLine("================================");
-	Console.WriteLine("\n");
-
-	int i = 0;
-	foreach (Car item in _listCar)
-	{
-		Console.WriteLine($"        Índice: {i}     ");
-		Console.WriteLine($"Marca do Carro: {item.brand}");
-		Console.WriteLine($"Modelo do Carro: {item.model}");
-		Console.WriteLine($"=========================");
-		i++;
-	}
-	Console.ReadKey();
-
-	//Car newCar = new Car("Renault", "Clio")
-	//_listCar.Add(new Car { });
-}
 

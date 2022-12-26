@@ -21,7 +21,7 @@ namespace rentcar_CONSOLE.rentcar_Models.Objects
 
 		}
 
-		public void RemoveCar(List<Car> list)
+		public static void RemoveCar(List<Car> list)
 		{
 			if (list.Count <= 0)
 			{
@@ -40,6 +40,50 @@ namespace rentcar_CONSOLE.rentcar_Models.Objects
 			Console.WriteLine("Carro ");
 		}
 
+		public static void AddCar(List<Car> list)
+		{
+			Console.Clear();
+			Console.WriteLine("================================");
+			Console.WriteLine("===     Cadastrando Carro    ===");
+			Console.WriteLine("================================");
+			Console.WriteLine("\n");
+			Console.Write("Digite a marca do carro: ");
+			string _brand = Console.ReadLine();
+			Console.Write("Digite o modelo do carro: ");
+			string _model = Console.ReadLine();
+
+			Car newCar = new Car(_brand, _model);
+			list.Add(newCar);
+
+		}
+
+		public static void ListCar(List<Car> list)
+		{
+			if (list.Count <= 0)
+			{
+				Console.WriteLine("Nenhum carro cadastrado.");
+				Console.ReadKey();
+				return;
+			}
+
+			Console.Clear();
+			Console.WriteLine("================================");
+			Console.WriteLine("===      Lista de Carros     ===");
+			Console.WriteLine("================================");
+			Console.WriteLine("\n");
+
+			int i = 0;
+			foreach (Car item in list)
+			{
+				Console.WriteLine($"        Índice: {i}     ");
+				Console.WriteLine($"Marca do Carro: {item.brand}");
+				Console.WriteLine($"Modelo do Carro: {item.model}");
+				Console.WriteLine($"=========================");
+				i++;
+			}
+			Console.ReadKey();
+
+		}
 
 		#region Estudos da classe conta corrente
 		//public Client Titular { get; set; }
