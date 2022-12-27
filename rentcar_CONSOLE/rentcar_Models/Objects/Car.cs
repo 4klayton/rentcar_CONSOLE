@@ -41,7 +41,7 @@ namespace rentcar_CONSOLE.rentcar_Models.Objects
 		
 			for (int i = 0; i < list.Count; i++ )
 			{
-				if (list[i].model == modelToFind)
+				if (list[i].model.Equals(modelToFind))
 				{
 					list.RemoveAt(i);
 					Console.WriteLine($"O carro {modelToFind} foi removido da lista");
@@ -93,14 +93,39 @@ namespace rentcar_CONSOLE.rentcar_Models.Objects
 			foreach (Car item in list)
 			{
 				Console.WriteLine($"        Índice: {i}     ");
-				Console.WriteLine($"Marca do Carro: {item.brand}");
-				Console.WriteLine($"Modelo do Carro: {item.model}");
-				Console.WriteLine($"=========================");
+				Console.WriteLine(item.ToString());
 				i++;
 			}
 			Console.ReadKey();
 
 		}
+
+		public static Car FindCar(List<Car> list)
+		{
+			Console.Clear();
+			Console.WriteLine("================================");
+			Console.WriteLine("===     Pesquisando Carro    ===");
+			Console.WriteLine("================================");
+			Console.WriteLine("\n");
+
+			Console.Write("Digite o modelo do carro que deseja pesquisar: ");
+			string modelToFind = Console.ReadLine().ToUpper();
+			Console.WriteLine("\n");
+			Console.WriteLine("================================");
+			return list.Where(car => car.model == modelToFind).FirstOrDefault();
+		}
+
+		public override String ToString()
+		{
+			return	$"Marca do Carro: {this.brand}\n" +
+					$"Modelo do Carro: {this.model}\n" +
+					$"Cor do Carro: \n" +
+					$"Ano do Carro: \n" +
+					$"Está locado? \n" +
+					$"=========================";
+		}
+
+
 
 		#region Estudos da classe conta corrente
 		//public Client Titular { get; set; }

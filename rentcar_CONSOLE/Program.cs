@@ -190,6 +190,10 @@ void CarMenu()
 				case '3':
 					Car.RemoveCar(_listCar);
 					break;
+				case '5':
+					Console.WriteLine(Car.FindCar(_listCar).ToString());
+					Console.ReadKey();
+					break;
 				case '9':
 					Console.WriteLine("Voltando para menu principal...");
 					Console.ReadKey();
